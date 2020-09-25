@@ -1,28 +1,52 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <form-controller
+      :client-link="'test.com'"
+      :post-values="[]"
+      :form-type="1"
+      :form-test="true"
+    ></form-controller>
+    <div id="mapHolder">
+      <haa-map-base :map-arr="mapArr" :map-selector="0"></haa-map-base>
+    </div>
+    <div class="spacer"></div>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "App",
-  components: {
-    HelloWorld
+  data() {
+    return {
+      mapArr: [
+        {
+          mapName: "newmap",
+          mapZoom: 7.3,
+          mapCenter: ["44.977161", " -93.265322"],
+          mapMarkers: [
+            {
+              text: "minn",
+              location: { lat: 44.96753065848276, lng: -93.2684326171875 }
+            },
+            {
+              text: "buffalo",
+              location: { lat: 45.16597226446922, lng: -93.8836669921875 }
+            },
+            {
+              text: "maple grove",
+              location: { lat: 45.09713227519701, lng: -93.44284057617189 }
+            }
+          ]
+        }
+      ]
+    };
   }
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#mapHolder {
+  height: 600px;
+  width: 600px;
 }
 </style>
