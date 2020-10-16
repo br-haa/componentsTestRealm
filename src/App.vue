@@ -184,12 +184,12 @@ body {
     h1{
       margin: 0;
     }
-    @media screen and (max-width: 640px){
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      h1{
-        font-size: 1.5rem;
-      }
+  }
+}
+.locationHolder{
+  @media screen and (max-width: 640px) {
+    h1{
+      margin: 0;
     }
   }
 }
