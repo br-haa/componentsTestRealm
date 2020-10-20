@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <div id="backgroundHolder">
-      <background-base
-        background="Lines"
-        :amount="200"
-        :hsla="hsla"
-      ></background-base>
-    </div>
-    <combo-header :hsla="hsla" :height="200" :isMobile="true">
+    <div id="backgroundHolder"></div>
+    <combo-header
+      :hsla="hsla"
+      :height="200"
+      :isMobile="isMobile"
+      :header-logo="'logo.png'"
+      :header-image="'background.jpg'"
+    >
       <template v-slot:desktopHeaderContent>
         <div class="centerGrid">
           <div class="locationHolder">
@@ -48,6 +48,8 @@
       </div>
       <div class="row1">
         <quality-list
+          :isMobile="isMobile"
+          :splitPoint="2"
           :list="[
             'Free Confidential Consultations',
             'Free 720 Program',
@@ -58,38 +60,47 @@
             'Chapter 7, 13 & Business Bankruptcy',
             'Call Days, Evenings, Or Weekends'
           ]"
-          :splitPoint="2"
         >
           <div v-if="isMobile" class="mapHolder">
-            <haa-map-base :map-arr="mapArr" :map-selector="0" :border="true" :hsla="hsla"></haa-map-base>
+            <haa-map-base
+              :map-arr="mapArr"
+              :map-selector="0"
+              :border="true"
+              :hsla="getHeaderColor"
+            ></haa-map-base>
           </div>
         </quality-list>
         <div v-if="!isMobile" class="mapHolder">
-          <haa-map-base :map-arr="mapArr" :map-selector="0" :border="true" :hsla="hsla"></haa-map-base>
+          <haa-map-base
+            :map-arr="mapArr"
+            :map-selector="0"
+            :border="true"
+            :hsla="hsla"
+          ></haa-map-base>
         </div>
         <score></score>
       </div>
       <div class="row2">
-<!--        <div class="icon-holder">-->
-<!--          <bbb-icon></bbb-icon>-->
-<!--          <bbb-icon :iteration="2"></bbb-icon>-->
-<!--          <bbb-icon :iteration="3"></bbb-icon>-->
-<!--          <bbb-icon :iteration="4"></bbb-icon>-->
-<!--          <google-icon></google-icon>-->
-<!--          <yelp-icon></yelp-icon>-->
-<!--        </div>-->
-        <logo-row></logo-row>
+        <logo-row
+          :badges="[
+            { path: 'logo.png', name: 'logo' },
+            { path: 'logo.png', name: 'logo' },
+            { path: 'logo.png', name: 'logo' }
+          ]"
+        ></logo-row>
       </div>
       <div class="row3">
         <form-controller
+          :hsla="hsla"
           :client-link="'test.com'"
           :post-values="[]"
           :form-type="1"
           :form-test="true"
+          :cta-text="'Contact Us Today!'"
         ></form-controller>
       </div>
     </div>
-
+    <div class="row4"></div>
     <call-bar :hsla="hsla"></call-bar>
   </div>
 </template>
@@ -146,19 +157,37 @@ export default {
       }
     };
   },
+  computed:{
+    getHeaderColor(){
+      if (!this.isMobile) {
+        return this.hsla;
+      } else {
+        return {
+          hue: 220,
+          saturation: 0,
+          lightness: 100,
+          alpha: 1
+        };
+      }
+    }
+  },
   methods: {
     setMobile() {
       this.isMobile = window.innerWidth <= 640;
+      console.log("resizing asdf");
     }
   },
   mounted() {
     this.setMobile();
-    window.addEventListener("resize", this.setMobile());
+    window.addEventListener("resize", this.setMobile);
   }
 };
 </script>
 
 <style lang="scss">
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
 }
@@ -168,27 +197,27 @@ body {
   margin: auto;
   padding: 1rem 3rem 1rem 3rem;
   box-sizing: border-box;
-  @media screen and (max-width: 640px){
-   width: 100%;
+  @media screen and (max-width: 640px) {
+    width: 100%;
   }
 }
-.centerGrid{
+.centerGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   color: white;
   place-items: center;
-  @media screen and (max-width: 640px){
-    grid-template-columns:1fr;
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
   }
-  .tagline{
-    h1{
+  .tagline {
+    h1 {
       margin: 0;
     }
   }
 }
-.locationHolder{
+.locationHolder {
   @media screen and (max-width: 640px) {
-    h1{
+    h1 {
       margin: 0;
     }
   }
@@ -197,7 +226,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 2rem 0 2rem 0;
-  @media screen and (max-width: 640px){
+  @media screen and (max-width: 640px) {
     grid-template-columns: 1fr;
   }
   .left {
@@ -206,11 +235,11 @@ body {
     h1 {
       font-size: 4rem;
       margin: 0;
-      @media screen and (max-width: 640px){
+      @media screen and (max-width: 640px) {
         font-size: 2rem;
       }
     }
-    h3{
+    h3 {
       font-size: 2rem;
       margin: 0;
     }
@@ -218,11 +247,11 @@ body {
   .right {
     text-align: center;
     place-self: center;
-    h3{
+    h3 {
       font-size: 2rem;
       margin: 0;
     }
-    h5{
+    h5 {
       font-size: 1.5rem;
       margin: 0;
     }
@@ -254,9 +283,12 @@ body {
   height: 450px;
   width: 450px;
   place-self: center;
-  @media screen and (max-width: 640px){
+  @media screen and (max-width: 640px) {
     width: 70vw;
     height: 70vw;
   }
+}
+.row4 {
+  height: 100vh;
 }
 </style>
