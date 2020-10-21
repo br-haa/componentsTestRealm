@@ -178,7 +178,7 @@ export default {
     }
   },
   mounted() {
-    const queryString = window.location.search;
+    // const queryString = window.location.search;
     // console.log(queryString);
     // const urlParams = new URLSearchParams(queryString);
     this.setMobile();
