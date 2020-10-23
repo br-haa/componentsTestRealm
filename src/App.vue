@@ -3,6 +3,7 @@
     <div id="backgroundHolder"></div>
     <combo-header
       :hsla="hsla"
+      :accent-skew="accentSkew"
       :height="200"
       :isMobile="isMobile"
       :header-logo="'logo.png'"
@@ -89,9 +90,13 @@
           ]"
         ></logo-row>
       </div>
+      <div class="row21">
+        <div class="bodyReviewGrid"></div>
+      </div>
       <div class="row3">
         <form-controller
           :hsla="hsla"
+          :accent-skew="accentSkew"
           :client-link="'test.com'"
           :post-values="[]"
           :form-type="1"
@@ -101,7 +106,7 @@
       </div>
     </div>
     <div class="row4"></div>
-    <call-bar :hsla="hsla"></call-bar>
+    <call-bar :hsla="hsla" :accent-skew="accentSkew"></call-bar>
   </div>
 </template>
 
@@ -154,11 +159,12 @@ export default {
         saturation: 100,
         lightness: 20,
         alpha: 1
-      }
+      },
+      accentSkew: 1.84
     };
   },
-  computed:{
-    getHeaderColor(){
+  computed: {
+    getHeaderColor() {
       if (!this.isMobile) {
         return this.hsla;
       } else {
@@ -175,12 +181,20 @@ export default {
     setMobile() {
       this.isMobile = window.innerWidth <= 640;
       console.log("resizing asdf");
+    },
+    getParams() {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const entries = urlParams.entries();
+      console.log(entries);
+      let arr = [];
+      for (const entry of entries) {
+        arr.push(`${entry[0]}: ${entry[1]}`);
+      }
+      console.log(arr);
     }
   },
   mounted() {
-    // const queryString = window.location.search;
-    // console.log(queryString);
-    // const urlParams = new URLSearchParams(queryString);
     this.setMobile();
     window.addEventListener("resize", this.setMobile);
   }
