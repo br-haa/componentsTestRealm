@@ -12,6 +12,7 @@ import "haa-map/dist/haa-map.css";
   Vue.use(x)
 );
 Vue.config.productionTip = false;
+
 new Vue({
   store,
   render: h => h(App)
