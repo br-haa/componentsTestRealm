@@ -92,11 +92,21 @@
       <div class="row3">
         <form-controller
           :hsla="hsla"
+          :form-reactor="'FRT472ABB2C5B9B141A4A3680F53877F30C180C53196BF0EB83DF2AE732179EE132'"
+          :Bjn="'6126885173'"
           :client-link="'test.com'"
-          :post-values="[]"
-          :form-type="1"
-          :form-test="true"
+          :post-values="[{ id: 'postValuesTest', value: 'test' }]"
+          :form-type="2"
           :cta-text="'Contact Us Today!'"
+          :custom-placeholders="{}"
+          :add-fields="[{ placeholder: 'Zip', id: 'Zip' }]"
+          :add-dropdowns="[
+            {
+              placeholder: 'test',
+              options: [{ name: '1' }, { name: '2' }, { name: '3' }],
+              id: 'DropDownExample'
+            }
+          ]"
         ></form-controller>
       </div>
     </div>
@@ -180,6 +190,11 @@ export default {
   mounted() {
     this.setMobile();
     window.addEventListener("resize", this.setMobile);
+  },
+  created() {
+    let ckeditor = document.createElement("script");
+    ckeditor.setAttribute("src", "//246962.tctm.co/t.js");
+    document.head.appendChild(ckeditor);
   }
 };
 </script>
