@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "haa-body": "file:../bodyComponents",
     "haa-form": "file:../Form-Component",
     "haa-map": "file:../mapComponent",
     "npm": "^6.14.8",

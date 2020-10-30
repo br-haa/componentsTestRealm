@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{ background: 'hsla(220, 50%, 10%,1)' }">
     <div id="backgroundHolder"></div>
     <combo-header
       :hsla="hsla"
@@ -34,7 +34,13 @@
         </div>
       </template>
     </combo-header>
-    <div class="mainWrapper">
+    <div
+      class="mainWrapper"
+      :style="{
+        color: `hsla(${textColors.light.h},${textColors.light.s}%,${textColors.light.l}%,${textColors.light.a})`,
+        background: 'hsla(220, 50%, 10%,1)'
+      }"
+    >
       <div class="headlines">
         <div class="left">
           <h1>$0 Down Bankruptcy™*</h1>
@@ -102,7 +108,7 @@
       </div>
     </div>
     <div class="row4"></div>
-    <call-bar :hsla="hsla"></call-bar>
+    <call-bar :hsla="hsla" :accentSkew="accentSkew"></call-bar>
   </div>
 </template>
 
@@ -155,11 +161,16 @@ export default {
         saturation: 100,
         lightness: 20,
         alpha: 1
+      },
+      accentSkew: 1.85,
+      textColors: {
+        light: { h: 100, s: 100, l: 90, a: 1 },
+        dark: { h: 100, s: 100, l: 50, a: 1 }
       }
     };
   },
   computed:{
-    getHeaderColor(){
+    getHeaderColor() {
       if (!this.isMobile) {
         return this.hsla;
       } else {
