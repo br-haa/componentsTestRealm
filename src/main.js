@@ -8,6 +8,7 @@ import HaaBody from "haa-body/src/main.js";
 import "random-backgrounds/dist/backgrounds.css";
 import "haa-form/dist/haa-form.css";
 import "haa-map/dist/haa-map.css";
+import "./assets/css/dynamic.scss";
 [HaaFormComponents, HaaMap, RandomBackgrounds, HaaBody].forEach(x =>
   Vue.use(x)
 );

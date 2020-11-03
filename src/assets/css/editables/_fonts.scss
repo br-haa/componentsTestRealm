@@ -1,0 +1,24 @@
+@import "variables";
+@import "../base/variables";
+$base-text-size: 1.1vw !default;
+
+
+h1, h2, h3, h4, h5{
+  font-family: $font1;
+  font-weight: 600;
+}
+
+p,ol,ul,input,textarea,button,a,label{
+  font-family: $font2;
+}
+
+:root{
+  --stored-text-size: 1.1vw;
+  --base-text-size: var(--stored-text-size);
+  @media (max-width: $medium-size) {
+    --base-text-size: calc(var(--stored-text-size)*1.5);
+  }
+  @media (max-width: $small-size) {
+    --base-text-size: calc(var(--stored-text-size)*2.5);
+  }
+}

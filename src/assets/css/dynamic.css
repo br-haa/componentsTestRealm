@@ -1,0 +1,237 @@
+/*--------------------------------------------------------------------------------------------------- base files start*/
+h1, h2, h3, h4, h5 {
+  font-family: serif;
+  font-weight: 600;
+}
+
+p, ol, ul, input, textarea, button, a, label {
+  font-family: sans-serif;
+}
+
+:root {
+  --stored-text-size: 1.1vw;
+  --base-text-size: var(--stored-text-size);
+}
+@media (max-width: 1050px) {
+  :root {
+    --base-text-size: calc(var(--stored-text-size)*1.5);
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --base-text-size: calc(var(--stored-text-size)*2.5);
+  }
+}
+
+h1 {
+  font-size: 4.4vw;
+  margin: 0;
+}
+
+h2 {
+  font-size: 3.3vw;
+  margin: 0;
+}
+
+h3 {
+  font-size: 2.2vw;
+  margin: 0;
+}
+
+h4 {
+  font-size: 1.65vw;
+  margin: 0;
+}
+
+h5 {
+  font-size: 1.43vw;
+  margin: 0;
+}
+
+p, ol, ul, input, textarea, button, label {
+  font-size: 1.21vw;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  font-size: inherit;
+}
+
+.ta-l {
+  text-align: left;
+}
+
+.ta-c {
+  text-align: center;
+}
+
+.ta-r {
+  text-align: right;
+}
+
+@media (max-width: 1050px) {
+  h1 {
+    font-size: 6.6vw;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 5.5vw;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 4.4vw;
+    margin: 0;
+  }
+
+  h4 {
+    font-size: 3.3vw;
+    margin: 0;
+  }
+
+  h5 {
+    font-size: 2.75vw;
+    margin: 0;
+  }
+
+  p, ol, ul, input, textarea, button, label {
+    font-size: 2.2vw;
+    margin: 0;
+  }
+
+  .m_ta-l {
+    text-align: left;
+  }
+
+  .m_ta-c {
+    text-align: center;
+  }
+
+  .m_ta-r {
+    text-align: right;
+  }
+}
+@media (max-width: 640px) {
+  h1 {
+    font-size: 8.8vw;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 7.7vw;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 6.6vw;
+    margin: 0;
+  }
+
+  h4 {
+    font-size: 5.5vw;
+    margin: 0;
+  }
+
+  h5 {
+    font-size: 4.95vw;
+    margin: 0;
+  }
+
+  p, ol, ul, input, textarea, button, label {
+    font-size: 4.4vw;
+    margin: 0;
+  }
+
+  .s_ta-l {
+    text-align: left;
+  }
+
+  .s_ta-c {
+    text-align: center;
+  }
+
+  .s_ta-r {
+    text-align: right;
+  }
+}
+/*----------------------------------------------------------------------------------------------------- base files end*/
+/*------------------------------------------------------------------------------------------------------- styles start*/
+h1, h2, h3, h4, h5 {
+  font-family: serif;
+  font-weight: 600;
+}
+
+p, ol, ul, input, textarea, button, a, label {
+  font-family: sans-serif;
+}
+
+:root {
+  --stored-text-size: 1.1vw;
+  --base-text-size: var(--stored-text-size);
+}
+@media (max-width: 1050px) {
+  :root {
+    --base-text-size: calc(var(--stored-text-size)*1.5);
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --base-text-size: calc(var(--stored-text-size)*2.5);
+  }
+}
+
+.btn1 {
+  cursor: pointer;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: none;
+  box-shadow: 0 0 3px 1px black;
+  transition: 0.1s;
+  border-radius: 1px;
+}
+
+.btn1:hover {
+  box-shadow: 0 0 2.5px 1px black;
+  transition: 0.1s;
+  transform: scale(1.015);
+}
+
+.btn1:focus {
+  outline: none;
+}
+
+.btn1:active {
+  box-shadow: 0 0 1px 1px black;
+  transition: 0.01s;
+  transform: scale(0.99);
+}
+
+.btn2 {
+  cursor: pointer;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: none;
+  box-shadow: 0 0 3px 1px black;
+  transition: 0.1s;
+  border-radius: 360px;
+}
+
+.btn2:hover {
+  box-shadow: 0 0 2.5px 1px black;
+  transition: 0.1s;
+  transform: scale(1.015);
+}
+
+.btn2:focus {
+  outline: none;
+}
+
+.btn2:active {
+  box-shadow: 0 0 1px 1px black;
+  transition: 0.01s;
+  transform: scale(0.99);
+}
+
+/*--------------------------------------------------------------------------------------------------------- styles end*/
+
+/*# sourceMappingURL=dynamic.css.map */

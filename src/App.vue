@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="{ background: 'hsla(220, 50%, 10%,1)' }">
+  <div id="app" :style="{ background: `hsla(220, 50%, ${getDarkMode.l}%,1)` }">
     <div id="backgroundHolder"></div>
     <combo-header
       :hsla="hsla"
@@ -8,15 +8,16 @@
       :isMobile="isMobile"
       :header-logo="'logo.png'"
       :header-image="'background.jpg'"
+      :text-color="textColors.dark"
     >
       <template v-slot:desktopHeaderContent>
         <div class="centerGrid">
           <div class="locationHolder">
-            <h1>wow, local places</h1>
+            <h3>wow, local places</h3>
           </div>
           <div class="tagline">
-            <h1>Free Immediate</h1>
-            <h1>Case Evaluation</h1>
+            <h3>Free Immediate</h3>
+            <h3>Case Evaluation</h3>
           </div>
         </div>
       </template>
@@ -37,8 +38,8 @@
     <div
       class="mainWrapper"
       :style="{
-        color: `hsla(${textColors.light.h},${textColors.light.s}%,${textColors.light.l}%,${textColors.light.a})`,
-        background: 'hsla(220, 50%, 10%,1)'
+        color: `hsla(${getDarkMode.textColor.h},${getDarkMode.textColor.s}%,${getDarkMode.textColor.l}%,${getDarkMode.textColor.a})`,
+        background: `hsla(220, 50%, ${getDarkMode.l}%,1)`
       }"
     >
       <div class="headlines">
@@ -73,7 +74,8 @@
               :map-arr="mapArr"
               :map-selector="0"
               :border="true"
-              :hsla="getHeaderColor"
+              :hsla="hsla"
+              :text-color="textColors.light"
             ></haa-map-base>
           </div>
         </quality-list>
@@ -83,9 +85,10 @@
             :map-selector="0"
             :border="true"
             :hsla="hsla"
+            :text-color="textColors.light"
           ></haa-map-base>
         </div>
-        <score></score>
+        <score :textColor="getDarkMode.textColor"></score>
       </div>
       <div class="row2">
         <logo-row
@@ -97,6 +100,9 @@
         ></logo-row>
       </div>
       <div class="row3">
+        <row>
+          <title-handler :text-color="getDarkMode.textColor" :incoming-text="{ content: 'hey', type:'h1' }"></title-handler>
+        </row>
         <form-controller
           :hsla="hsla"
           :client-link="'test.com'"
@@ -118,6 +124,7 @@ export default {
   data() {
     return {
       isMobile: true,
+      darkMode: false,
       mapArr: [
         {
           mapName: "1",
@@ -164,12 +171,12 @@ export default {
       },
       accentSkew: 1.85,
       textColors: {
-        light: { h: 100, s: 100, l: 90, a: 1 },
-        dark: { h: 100, s: 100, l: 50, a: 1 }
+        light: { h: 220, s: 100, l: 10, a: 1 },
+        dark: { h: 220, s: 100, l: 100, a: 1 }
       }
     };
   },
-  computed:{
+  computed: {
     getHeaderColor() {
       if (!this.isMobile) {
         return this.hsla;
@@ -181,11 +188,19 @@ export default {
           alpha: 1
         };
       }
+    },
+    getDarkMode() {
+      const tc = this.textColors;
+      if (this.darkMode) {
+        return { textColor: tc.dark, l: 10 };
+      } else {
+        return { textColor: tc.light, l: 100 };
+      }
     }
   },
   methods: {
     setMobile() {
-      this.isMobile = window.innerWidth <= 640;
+      this.isMobile = window.innerWidth <= 1080;
       console.log("resizing asdf");
     }
   },
@@ -205,20 +220,20 @@ body {
 }
 .mainWrapper {
   background: white;
-  width: 80%;
+  width: 85%;
   margin: auto;
   padding: 1rem 3rem 1rem 3rem;
   box-sizing: border-box;
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 1080px) {
     width: 100%;
+    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
   }
 }
 .centerGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  color: white;
   place-items: center;
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 1080px) {
     grid-template-columns: 1fr;
   }
   .tagline {
@@ -228,7 +243,7 @@ body {
   }
 }
 .locationHolder {
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 1080px) {
     h1 {
       margin: 0;
     }
@@ -238,7 +253,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 2rem 0 2rem 0;
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 1080px) {
     grid-template-columns: 1fr;
   }
   .left {
@@ -247,7 +262,7 @@ body {
     h1 {
       font-size: 4rem;
       margin: 0;
-      @media screen and (max-width: 640px) {
+      @media screen and (max-width: 1080px) {
         font-size: 2rem;
       }
     }
@@ -273,7 +288,10 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 1rem;
-  @media screen and (max-width: 640px) {
+  svg {
+    place-self: center;
+  }
+  @media screen and (max-width: 1080px) {
     grid-template-columns: 1fr;
   }
   .score {
@@ -295,7 +313,7 @@ body {
   height: 450px;
   width: 450px;
   place-self: center;
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 1080px) {
     width: 70vw;
     height: 70vw;
   }
